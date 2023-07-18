@@ -1,0 +1,26 @@
+[
+  {
+    "nombre": "Cristian Diaz",
+    "edad": 20,
+    "nacionalidad": "Colombiano",
+    "presupuesto": 7891000000
+  },
+  {
+    "nombre": "María Fernández",
+    "edad": 28,
+    "nacionalidad": "Mexicana",
+    "presupuesto": 500000000
+  },
+  {
+    "nombre": "Emily Chen",
+    "edad": 26,
+    "nacionalidad": "Estadounidense",
+    "presupuesto": 10000000000
+  },
+  {
+    "nombre": "Mohammed Rahman",
+    "edad": 30,
+    "nacionalidad": "Bangladesí",
+    "presupuesto": 2500000000
+  }
+]

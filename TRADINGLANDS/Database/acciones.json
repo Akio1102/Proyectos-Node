@@ -1,0 +1,14 @@
+[
+  {
+    "nombre": "Plata",
+    "cantidad": 100
+  },
+  {
+    "nombre": "Oro",
+    "cantidad": 10000
+  },
+  {
+    "nombre": "Ecopetrol",
+    "cantidad": 50
+  }
+]
