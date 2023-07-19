@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
-import conectDB from "../Config/config.js";
-import AccionesRoutes from "../Routers/Acciones.routes.js";
+import conectDB from "../Database/config.js";
+import Routes from "../Routers/Routes.js";
 
 export class Server {
   constructor() {
@@ -22,7 +22,7 @@ export class Server {
   }
 
   routes() {
-    this.app.use(AccionesRoutes);
+    this.app.use(Routes);
   }
 
   listen() {

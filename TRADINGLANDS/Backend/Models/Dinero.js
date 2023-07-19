@@ -1,10 +1,23 @@
 import mongoose from "mongoose";
 
 const dineroSchema = mongoose.Schema(
-  {},
+  {
+    criptomonedas: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    fiat: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+  },
   {
     timmestamps: true,
   }
 );
 
-export const Dinero = mongoose.model("Dinero", dineroSchema);
+const Dinero = mongoose.model("dinero", dineroSchema);
+
+export default Dinero;

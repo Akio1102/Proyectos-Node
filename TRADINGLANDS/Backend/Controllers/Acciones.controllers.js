@@ -1,65 +1,84 @@
-import Acciones from "../Models/Acciones.js";
+import Acciones from "../Models/Accion.js";
+import Response from "./Response.js";
 
 export const getAcciones = async (req, res) => {
   try {
     const acciones = await Acciones.find();
-    res.status(200).json(acciones);
+    const response = Response(
+      acciones,
+      "Acciones encontradas",
+      "No hay Acciones"
+    );
+    res.status(response.status).json(response.body);
   } catch (error) {
-    res.status(404).send({ error });
+    res.status(500).send({ error: "Error en el servidor" });
+  }
+};
+
+export const getAccionID = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const acciones = await Acciones.findById(id);
+    const response = Response(
+      acciones,
+      "Accion encontradas",
+      "Accion no encontradas"
+    );
+    res.status(response.status).json(response.body);
+  } catch (error) {
+    res.status(500).send({ error: "Error en el servidor" });
   }
 };
 
 export const postAcciones = async (req, res) => {
-  const acciones = new Acciones(req.body);
   try {
+    const acciones = new Acciones(req.body);
     const newAcciones = await acciones.save();
-    res.status(201).json(newAcciones);
+    const response = Response(
+      newAcciones,
+      "Acciones guardadas",
+      "Faltan Datos"
+    );
+    res.status(response.status).json(response.body);
   } catch (error) {
-    res.status(404).send({ error: "Faltan Datos" });
+    res.status(400).send({ error: "Faltan Datos" });
+  }
+};
+
+export const putAcciones = async (req, res) => {
+  try {
+    const id = { _id: req.params.id };
+    const actualizacion = req.body;
+
+    const updatedAcciones = await Acciones.findOneAndUpdate(id, actualizacion, {
+      new: true,
+    });
+
+    const response = Response(
+      updatedAcciones,
+      "Acciones Actualizada exitosamente",
+      "Acciones no encontrados"
+    );
+
+    res.status(response.status).json(response.body);
+  } catch (error) {
+    res.status(500).send({ error: "Error en el servidor" });
   }
 };
 
 export const deleteAcciones = async (req, res) => {
-  const acciones = new Acciones(req.body);
   try {
-    const newAcciones = await acciones.save();
-    res.status(201).json(newAcciones);
-  } catch (error) {
-    res.status(404).send({ error: "Faltan Datos" });
-  }
-};
+    const id = { _id: req.params.id };
+    const deletedAcciones = await Acciones.findOneAndDelete(id);
 
-export const updateAcciones = async (req, res) => {
-  const acciones = new Acciones(req.body);
-  try {
-    const newAcciones = await acciones.save();
-    res.status(201).json(newAcciones);
-  } catch (error) {
-    res.status(404).send({ error: "Faltan Datos" });
-  }
-};
+    const response = Response(
+      deletedAcciones,
+      "Acciones Eliminada exitosa",
+      "Acciones no encontrados"
+    );
 
-export const deleteCamisa = async (req, res) => {
-  try {
-    await Camisas.deleteOne({ _id: req.params.id });
-    res.status(204).json({ message: `Camisa Eliminado` });
+    res.status(response.status).json(response.body);
   } catch (error) {
-    res.status(404).send({ error: "Camisa no existe" });
-  }
-};
-
-export const updateCamisa = async (req, res) => {
-  try {
-    const camisa = await Camisas.findOne({ _id: req.params.id });
-    if (req.body.tipo) {
-      camisa.tipo = req.body.tipo;
-    }
-    if (req.body.color) {
-      camisa.color = req.body.color;
-    }
-    await camisa.save();
-    res.status(200).json(camisa);
-  } catch (error) {
-    res.status(404).send({ error: "Camisa no existe" });
+    res.status(500).send({ error: "Error en el servidor" });
   }
 };

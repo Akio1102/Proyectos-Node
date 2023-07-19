@@ -2,22 +2,22 @@ import mongoose from "mongoose";
 
 const traderSchema = mongoose.Schema(
   {
-    Nombre: {
+    nombre: {
       type: String,
       required: true,
       trim: true,
     },
-    Cantidad: {
+    edad: {
       type: Number,
       required: true,
       trim: true,
     },
-    Nacionalidad: {
+    nacionalidad: {
       type: String,
       required: true,
       trim: true,
     },
-    Presupuesto: {
+    presupuesto: {
       type: Number,
       required: true,
       trim: true,
@@ -28,4 +28,6 @@ const traderSchema = mongoose.Schema(
   }
 );
 
-export const Trader = mongoose.model("Trader", traderSchema);
+const Trader = mongoose.model("trader", traderSchema);
+
+export default Trader;

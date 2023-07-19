@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const accionesSchema = mongoose.Schema(
   {
-    Nombre: {
+    nombre: {
       type: String,
       required: true,
       trim: true,
     },
-    Cantidad: {
+    cantidad: {
       type: Number,
       required: true,
       trim: true,
@@ -18,6 +18,6 @@ const accionesSchema = mongoose.Schema(
   }
 );
 
-const Acciones = mongoose.model("acciones", accionesSchema);
+const Acciones = mongoose.model("accione", accionesSchema);
 
 export default Acciones;
